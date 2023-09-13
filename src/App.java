@@ -12,7 +12,7 @@ public class App {
 
             switch (rUser) {
                 case 1:
-                    MenuBuilder.buildMenu("Ferramentas", "1. Gerenciar ferramentas.;2. Remover Ferramenta.;3. Listar Ferramentas.;");
+                    MenuBuilder.buildMenu("Ferramentas", "1. Gerenciar ferramentas.;2. Remover Ferramenta.;3. Listar Ferramentas.;4. ");
                     rUser = Integer.parseInt(input.nextLine());
                 break;
 
