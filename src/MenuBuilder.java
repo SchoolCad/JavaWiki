@@ -56,6 +56,7 @@ public class MenuBuilder {
         menuBuilder.append("\nR: ");
 
         // Imprime o conteúdo do menu
+        System.out.print("\033[H\033[2J");
         System.out.print(menuBuilder.toString());
 
         return 0; // Retorna 0 para indicar que o menu foi construído com sucesso

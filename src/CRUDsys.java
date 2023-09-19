@@ -3,7 +3,7 @@ import java.io.*;
 public class CRUDsys {
     
     /*------------------------------------------------------------------------------------------------------*/
-    
+
     private String fileName;
 
     public CRUDsys(String fileName) {

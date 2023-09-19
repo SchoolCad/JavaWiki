@@ -1,17 +1,17 @@
-public class Tools extends Category {
+public class Tools extends CRUDsys {
     private String name;
     private String description;
 
     
-    public Tools(String usage, String name, String description) {
-        super(usage);
+    public Tools(String name, String description, String filename) {
+        super(filename);
         this.name = name;
         this.description = description;
     }
 
-    public Tools() {
+    public Tools(String filename) {
+        super(filename);
     }
-
 
     public String getName() {
         return name;
