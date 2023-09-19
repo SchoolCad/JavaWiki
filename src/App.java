@@ -4,12 +4,13 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-
+        String ToolsFileName = "Tools.txt";
+        String CategoryFileName = "Category.txt";
         // listas
         List<Category> CategoryList = new ArrayList<Category>();
         List<Tools> ToolsList = new ArrayList<Tools>();
 
-        Tools ToolsPicker = new Tools("Tools.txt");
+        Tools ToolsPicker = new Tools(ToolsFileName);
         // Lendo dados do arquivo Tools.txt
         try {
             String data = ToolsPicker.readAll();
@@ -24,7 +25,7 @@ public class App {
             System.out.println("ERRO: Não foi possível ler do arquivo -> " + e.getMessage());
         }
 
-        Category CategoryPicker = new Category("Category.txt");
+        Category CategoryPicker = new Category(CategoryFileName);
         // Lendo dados do arquivo Category.txt
         try {
             String data = CategoryPicker.readAll();
