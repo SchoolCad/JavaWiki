@@ -38,7 +38,6 @@ public class App {
             System.out.println("ERRO: Não foi possível ler do arquivo -> " + e.getMessage());
         }
 
-
         String auxString, auxString2;
         int rUser;
         Scanner input = new Scanner(System.in);
@@ -97,7 +96,7 @@ public class App {
                             case 3:
                                 MenuBuilder.clearScreen();
                                 System.out.print("Ferramentas: \n\n");
-                                
+
                                 auxString = ToolsPicker.readAll();
                                 String[] lines = auxString.split(";");
                                 for (String line : lines) {
@@ -156,28 +155,82 @@ public class App {
                         switch (rUser) {
                             // Salvar
                             case 1:
+                                MenuBuilder.clearScreen();
+                                System.out.print("Digite o nome da categoria: ");
+                                auxString = input.nextLine();
+                                CategoryPicker.setUsage(auxString);
 
+                                CategoryList.add(CategoryPicker);
+                                CategoryPicker.create(CategoryPicker.getUsage() + ";");
                                 break;
 
                             // remover
                             case 2:
+                                MenuBuilder.clearScreen();
+                                System.out.print("Digite o nome da categoria que deseja remover: ");
+                                auxString = input.nextLine();
+
+                                if (CategoryPicker.delete(auxString, 0) == true) {
+                                    // Removendo da lista:
+                                    for (Category category : CategoryList) {
+                                        if (category.getUsage().equals(auxString)) {
+                                            CategoryList.remove(category);
+                                            break;
+                                        }
+                                    }
+
+                                    System.out.println("\nCategoria removida com sucesso!");
+                                } else {
+                                    System.out.println("\nCategoria não encontrada!");
+                                }
+                                MenuBuilder.pause(input);
                                 break;
 
                             // Listar
                             case 3:
+                                MenuBuilder.clearScreen();
+                                System.out.print("Categorias: \n\n");
+
+                                auxString = CategoryPicker.readAll();
+                                String[] lines = auxString.split(";");
+                                for (String line : lines) {
+                                    System.out.println("Categoria: " + line + "\n");
+                                }
+
+                                MenuBuilder.pause(input);
                                 break;
 
                             // Editar
                             case 4:
+                                MenuBuilder.clearScreen();
+                                System.out.print("Digite o nome da categoria que deseja editar: ");
+                                auxString = input.nextLine();
+
+                                System.out.print("Digite o novo nome da categoria: ");
+                                auxString2 = input.nextLine();
+
+                                if (CategoryPicker.update(auxString, auxString2, 0) == true) {
+                                    // Editando na lista:
+                                    for (Category category : CategoryList) {
+                                        if (category.getUsage().equals(auxString)) {
+                                            category.setUsage(auxString2);
+                                            break;
+                                        }
+                                    }
+                                    System.out.println("\nCategoria editada com sucesso!");
+                                } else {
+                                    System.out.println("\nCategoria não encontrada!");
+                                }
+                                MenuBuilder.pause(input);
                                 break;
                             // Voltar
                             case 5:
-
                                 System.out.println("Voltando...");
                                 break;
 
                             default:
                                 System.out.println("opção invalida! Escolha entre 1 e 5.");
+                                MenuBuilder.pause(input);
                                 break;
                         }
                     } while (rUser != 5);
@@ -190,6 +243,7 @@ public class App {
 
                 default:
                     System.out.println("Opção inválida! Escolha entre 1 e 3.");
+                    MenuBuilder.pause(input);
                     break;
             }
         } while (rUser != 3);
