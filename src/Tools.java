@@ -31,6 +31,6 @@ public class Tools extends CRUDsys {
 
     @Override
     public String toString() {
-        return "Nome: " + name + "\nDescrição:" + description;
+        return "Nome: " + name + "\nDescrição: " + description;
     }
 }
