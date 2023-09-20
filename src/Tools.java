@@ -1,12 +1,14 @@
 public class Tools extends CRUDsys {
     private String name;
     private String description;
+    private String category;
 
     
-    public Tools(String name, String description, String filename) {
+    public Tools(String name, String description, String filename, String category) {
         super(filename);
         this.name = name;
         this.description = description;
+        this.category = category;
     }
 
     public Tools(String filename) {
@@ -29,8 +31,16 @@ public class Tools extends CRUDsys {
         this.description = description;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
-        return "Nome: " + name + "\nDescrição: " + description;
+        return "Nome: " + name + "\nDescrição: " + description + "\nCategoria: " + category;
     }
 }

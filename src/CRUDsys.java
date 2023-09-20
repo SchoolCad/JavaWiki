@@ -69,6 +69,7 @@ public class CRUDsys {
                 return false;
             }
 
+            boolean alter = false;
             String[] values = fileData.split(";");
 
             String newFileData = "";
@@ -76,6 +77,7 @@ public class CRUDsys {
                 String[] props = values[i].split(",");
                 if (props[index].equals(identifier)) {
                     newFileData += newData;
+                    alter = true;
                 } else {
                     newFileData += values[i] + ";";
                 }
@@ -86,6 +88,10 @@ public class CRUDsys {
                 bufferedWriter.write(newFileData);
             } catch (IOException e) {
                 System.out.println("ERRO: Não foi possível atualizar o dado -> " + e.getMessage());
+                return false;
+            }
+
+            if(alter == false) {
                 return false;
             }
 
