@@ -1,4 +1,4 @@
-public class Tools extends CRUDsys {
+public class Tools extends crud_system {
     private String name;
     private String description;
     private String category;

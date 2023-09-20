@@ -1,4 +1,4 @@
-public class Category extends CRUDsys{
+public class Category extends crud_system{
     private String usage;
 
     public String getUsage() {

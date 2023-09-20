@@ -63,6 +63,7 @@ public class App {
         char auxChar;
         boolean auxBool = false;
         int rUser;
+
         Scanner input = new Scanner(System.in);
         do {
             MenuBuilder.clearScreen();
@@ -132,12 +133,12 @@ public class App {
 
                                 if(auxBool == true) {
                                     SpecificToolsList.add(SpecificToolsPicker);
-                                    SpecificToolsPicker.create(SpecificToolsPicker.getName() + "," + SpecificToolsPicker.getDescription() + "," + SpecificToolsPicker.getStandards() + "," + SpecificToolsPicker.getCategory() + ";");
+                                    SpecificToolsPicker.create((SpecificToolsPicker.getName() + ";" + SpecificToolsPicker.getDescription() + ";" + SpecificToolsPicker.getStandards() + ";" + SpecificToolsPicker.getCategory()), true, true);
                                     break;
                                 }
 
                                 ToolsList.add(ToolsPicker);
-                                ToolsPicker.create(ToolsPicker.getName() + "," + ToolsPicker.getDescription() + "," + ToolsPicker.getCategory() + ";");
+                                ToolsPicker.create((ToolsPicker.getName() + ";" + ToolsPicker.getDescription() + ";" + ToolsPicker.getCategory()), true, true);
                                 break;
 
                             // remover
@@ -154,7 +155,7 @@ public class App {
                                 }
 
                                 if(auxChar == 'S' || auxChar == 's') {
-                                    if (SpecificToolsPicker.delete(auxString, 0) == true) {
+                                    if (SpecificToolsPicker.delete(auxString, 0) != null) {
                                         // Removendo da lista:
                                         for (SpecificTools tool : SpecificToolsList) {
                                             if (tool.getName().equals(auxString)) {
@@ -171,7 +172,7 @@ public class App {
                                     MenuBuilder.pause(input);
                                     break;
                                 } else {
-                                    if (ToolsPicker.delete(auxString, 0) == true) {
+                                    if (ToolsPicker.delete(auxString, 0) != null) {
                                         // Removendo da lista:
                                         for (Tools tool : ToolsList) {
                                             if (tool.getName().equals(auxString)) {
@@ -271,7 +272,7 @@ public class App {
                                     SpecificToolsPicker.setCategory(newCategory);
                                     SpecificToolsPicker.setStandards(auxString4);
 
-                                    if (SpecificToolsPicker.update(auxString, SpecificToolsPicker.getName() + "," + SpecificToolsPicker.getDescription() + "," + SpecificToolsPicker.getStandards() + "," + SpecificToolsPicker.getCategory() + ";", 0) == true) {
+                                    if (SpecificToolsPicker.update(auxString, 0, SpecificToolsPicker.getName() + "," + SpecificToolsPicker.getDescription() + "," + SpecificToolsPicker.getStandards() + "," + SpecificToolsPicker.getCategory() + ";") == true) {
                                         // Editando na lista:
                                         for (SpecificTools tool : SpecificToolsList) {
                                             if (tool.getName().equals(auxString)) {
@@ -294,7 +295,7 @@ public class App {
                                     ToolsPicker.setDescription(auxString3);
                                     ToolsPicker.setCategory(newCategory);
 
-                                    if (ToolsPicker.update(auxString, ToolsPicker.getName() + "," + ToolsPicker.getDescription() + "," + ToolsPicker.getCategory() + ";", 0) == true) {
+                                    if (ToolsPicker.update(auxString, 0, ToolsPicker.getName() + "," + ToolsPicker.getDescription() + "," + ToolsPicker.getCategory() + ";") == true) {
                                         // Editando na lista:
                                         for (Tools tool : ToolsList) {
                                             if (tool.getName().equals(auxString)) {
@@ -343,7 +344,7 @@ public class App {
                                 CategoryPicker.setUsage(auxString);
 
                                 CategoryList.add(CategoryPicker);
-                                CategoryPicker.create(CategoryPicker.getUsage() + ";");
+                                CategoryPicker.create(CategoryPicker.getUsage(), true, true);
                                 break;
 
                             // remover
@@ -353,7 +354,7 @@ public class App {
                                 System.out.print("Digite o nome da categoria que deseja remover: ");
                                 auxString = input.nextLine();
 
-                                if (CategoryPicker.delete(auxString, 0) == true) {
+                                if (CategoryPicker.delete(auxString, 0) != null) {
                                     // Removendo da lista:
                                     for (Category category : CategoryList) {
                                         if (category.getUsage().equals(auxString)) {
@@ -398,7 +399,7 @@ public class App {
                                 System.out.print("Digite o novo nome da categoria: ");
                                 auxString2 = input.nextLine();
 
-                                if (CategoryPicker.update(auxString, auxString2 + ";\n", 0) == true) {
+                                if (CategoryPicker.update(auxString, 0, auxString2 + ";\n") == true) {
                                     // Editando na lista:
                                     
                                     try {
@@ -456,7 +457,6 @@ public class App {
                     break;
             }
         } while (rUser != 3);
-
         input.close();
     }
 }
