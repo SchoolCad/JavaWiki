@@ -21,6 +21,6 @@ public class Category extends crud_system{
     // Métodos
     @Override
     public String toString() {
-        return "Category: " + usage;
+        return "Categoria: " + usage;
     }
 }

@@ -1,5 +1,0 @@
-Martelo;martela;cuidado caralho;Geral
-chave inglesa;ela spika em ingles;norma top;Geral
-chave europeia;ela fala em europes;norma mais top ainda;TopCategory
-chave americana;ela fala em americano;norma mais top ainda que tudo;megaMind
-chave brasileira;ela fala em brasileiro;sem normas entao cuidado;megaMind

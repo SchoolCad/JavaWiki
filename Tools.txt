@@ -1,7 +1,0 @@
-chave de fenda;ela fenda;Geral
-chave philips;ela philips;TopCategory
-tico tico;ele corta coisas; megaMind
-furadeira;ela fura coisas; megaMind
-parafusadeira;ela parafusa coisas; megaMind
-serra;ela serra coisas; Geral
-martelo;ele martela coisas; TopCategory

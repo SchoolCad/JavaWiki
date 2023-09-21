@@ -52,24 +52,22 @@ public class App {
         Category CategoryPicker = new Category(CategoryFileName);
         try {
             String data = CategoryPicker.readAll();
-            String[] lines = data.split(";");
-
-            for (String line : lines) {
-                String[] parts = line.split(",");
-                Category category = new Category(CategoryFileName);
-                category.setUsage(parts[0]);
-
-                CategoryList.add(category);
+            String[] lines = data.split("\n");
+            for (int i = 0; i < lines.length; i++) {
+                Category catPicker = new Category(CategoryFileName);
+                catPicker.setUsage(lines[i]);
+                CategoryList.add(catPicker);
             }
         } catch (Exception e) {
             System.out.println("ERRO: Não foi possível ler do arquivo -> " + e.getMessage());
         }
 
+
         /*---------------------------------------------- Variáveis auxíliares ----------------------------------------------*/
         // Criando variáveis auxíliares:
         String auxString, auxString2, auxString3, auxString4;
         char auxChar;
-        int rUser;
+        int rUser, auxInt;
 
         // Cadastrando uma categorial inicial para não haver problemas relacionados à
         // lista de categorias:
@@ -82,6 +80,9 @@ public class App {
         /*---------------------------------------------- Menu ----------------------------------------------*/
         // MenuLoop:
         Scanner input = new Scanner(System.in);
+
+        
+        MenuBuilder.pause(input);
         do {
             // Tela inicial -> Menu nível 1:
             MenuBuilder.clearScreen();
@@ -368,26 +369,32 @@ public class App {
                             // Salvar
                             case 1:
                                 MenuBuilder.clearScreen();
+
                                 System.out.print("\nDigite o nome da categoria: ");
                                 auxString = input.nextLine();
+
                                 CategoryPicker.setUsage(auxString);
 
-                                CategoryList.add(CategoryPicker);
                                 CategoryPicker.create(CategoryPicker.getUsage(), true, true);
-                                break;
+
+                                CategoryList.add(CategoryPicker);
+                            break;
 
                             // remover
                             case 2:
-                                // Verifica se há apenas 1 categoria disponível:
-                                if (CategoryList.size() == 1) {
+                                // verifica a quantidade de itens na lista de categorias e caso só exista uma, impede de remove-la:
+                                auxInt = CategoryList.size();
+
+                                if (auxInt == 1) {
                                     System.out.println("\nNão é possível remover a única categoria disponível!");
                                 } else {
                                     MenuBuilder.clearScreen();
-                                    System.out.print("\nDigite o nome da categoria que deseja remover: ");
+                                    System.out.print("Digite o nome da categoria que deseja remover: ");
                                     auxString = input.nextLine();
 
                                     // Tenta deletar a categoria do arquivo:
                                     if (CategoryPicker.delete(auxString, 0) != null) {
+
                                         // Caso a categoria seja removida, ela é removida da lista de categorias:
                                         for (Category category : CategoryList) {
                                             if (category.getUsage().equals(auxString)) {
@@ -428,21 +435,22 @@ public class App {
                             case 3:
                                 if (CategoryList.isEmpty()) {
                                     System.out.println("\nNão existem categorias disponíveis para listar!");
-                                    MenuBuilder.pause(input);
-                                    break;
+                                } else{
+                                    // Listando as categorias:
+
+                                    MenuBuilder.clearScreen();
+                                    System.out.print("\nCategorias: \n");
+
+                                    for (Category category : CategoryList) {
+                                        System.out.println("Categoria: " + category.getUsage() + "\n");
+                                    }
+
                                 }
 
-                                MenuBuilder.clearScreen();
-                                System.out.print("\nCategorias: \n\n");
 
-                                auxString = CategoryPicker.readAll();
-                                String[] lines = auxString.split(";");
-                                for (String line : lines) {
-                                    System.out.println("\nCategoria: " + line + "\n");
-                                }
-
+                            
                                 MenuBuilder.pause(input);
-                                break;
+                            break;
 
                             // Editar
                             case 4:
@@ -456,7 +464,7 @@ public class App {
                                 if (CategoryPicker.update(auxString, 0, auxString2 + ";\n") == true) {
                                     // Editando na lista:
 
-                                    try {
+                                    /*try {
                                         String data = CategoryPicker.readAll();
                                         lines = data.split(";");
 
@@ -473,7 +481,7 @@ public class App {
                                     } catch (Exception e) {
                                         System.out
                                                 .println("ERRO: Não foi possível ler do arquivo -> " + e.getMessage());
-                                    }
+                                    }*/
 
                                     for (Category category : CategoryList) {
                                         if (category.getUsage().equals(auxString)) {
