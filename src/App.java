@@ -80,9 +80,6 @@ public class App {
         /*---------------------------------------------- Menu ----------------------------------------------*/
         // MenuLoop:
         Scanner input = new Scanner(System.in);
-
-        
-        MenuBuilder.pause(input);
         do {
             // Tela inicial -> Menu nível 1:
             MenuBuilder.clearScreen();
@@ -442,7 +439,7 @@ public class App {
                                     System.out.print("\nCategorias: \n");
 
                                     for (Category category : CategoryList) {
-                                        System.out.println("Categoria: " + category.getUsage() + "\n");
+                                        System.out.println(category);
                                     }
 
                                 }
