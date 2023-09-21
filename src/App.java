@@ -47,10 +47,13 @@ public class App {
         try {
             String data = CategoryPicker.readAll();
             String[] lines = data.split(";");
+            
             for (String line : lines) {
                 String[] parts = line.split(",");
-                CategoryPicker.setUsage(parts[0]);
-                CategoryList.add(CategoryPicker);
+                Category category = new Category(CategoryFileName);
+                category.setUsage(parts[0]);
+                
+                CategoryList.add(category);
             }
         } catch (Exception e) {
             System.out.println("ERRO: Não foi possível ler do arquivo -> " + e.getMessage());
@@ -95,7 +98,7 @@ public class App {
 
                                 //liste as categorias disponíveis colocando seu index + 1 como indicador
                                 System.out.println("Categorias disponíveis: ");
-
+                                
                                 for (int i = 0; i < CategoryList.size(); i++) {
                                     System.out.println((i + 1) + " - " + CategoryList.get(i).getUsage() + "\n");
                                 }
@@ -395,14 +398,34 @@ public class App {
                                 System.out.print("Digite o novo nome da categoria: ");
                                 auxString2 = input.nextLine();
 
-                                if (CategoryPicker.update(auxString, auxString2, 0) == true) {
+                                if (CategoryPicker.update(auxString, auxString2 + ";\n", 0) == true) {
                                     // Editando na lista:
+                                    
+                                    try {
+                                        String data = CategoryPicker.readAll();
+                                        lines = data.split(";");
+                                        
+                                        CategoryList.clear();
+                                        
+                                        for (String line : lines) {
+                                            String[] parts = line.split(",");
+                                            
+                                            Category category = new Category(CategoryFileName);
+                                            category.setUsage(parts[0]);
+                                            
+                                            CategoryList.add(category);
+                                        }
+                                    } catch (Exception e) {
+                                        System.out.println("ERRO: Não foi possível ler do arquivo -> " + e.getMessage());
+                                    }
+
                                     for (Category category : CategoryList) {
                                         if (category.getUsage().equals(auxString)) {
                                             category.setUsage(auxString2);
                                             break;
                                         }
                                     }
+
                                     System.out.println("\nCategoria editada com sucesso!");
                                 } else {
                                     System.out.println("\nCategoria não encontrada!");
