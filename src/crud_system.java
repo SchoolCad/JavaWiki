@@ -90,7 +90,7 @@ public class crud_system {
     /*-------------------------------------------+ CRUD - UPDATE +-------------------------------------------*/
     // Definindo o método para atualizar um registro do arquivo:
     // crUd - Update
-    public boolean update(String target, int position, String newValue) {
+    public boolean update(String target, int position, String newValue, int newValuePosition) {
         boolean check = false;
 
         // Definindo uma variável para armazenar o backup do arquivo:
@@ -117,13 +117,13 @@ public class crud_system {
                     // Laço para percorrer as partes da linha e encontrar a parte que será atualizada:
                     for (int i = 0; i < parts.length; i++) {
                         if (i != parts.length - 1) {
-                            if (i == position) {
+                            if (i == newValuePosition) {
                                 line += newValue + ";";
                             } else {
                                 line += parts[i] + ";";
                             }
                         } else {
-                            if (i == position) {
+                            if (i == newValuePosition) {
                                 line += newValue;
                             } else {
                                 line += parts[i];

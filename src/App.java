@@ -64,7 +64,7 @@ public class App {
 
         /*---------------------------------------------- Variáveis auxíliares ----------------------------------------------*/
         // Criando variáveis auxíliares:
-        String auxString, auxString2, auxString3, auxString4;
+        String auxString, auxString2;
         char auxChar;
         int rUser, auxInt;
 
@@ -250,9 +250,10 @@ public class App {
 
                             // Editar
                             case 4:
-                                MenuBuilder.clearScreen(); 
+                                MenuBuilder.clearScreen();
                                 System.out.println("./JavaWiki/Ferramentas/Editar");
-                                MenuBuilder.buildMenu("Editando ferramentas", "1. Editar ferramenta;2. Editar ferramenta específica;3. Voltar.");
+                                MenuBuilder.buildMenu("Editando ferramentas",
+                                        "1. Editar ferramenta;2. Editar ferramenta específica;3. Voltar.");
                                 rUser = Integer.parseInt(input.nextLine());
 
                                 switch (rUser) {
@@ -260,17 +261,38 @@ public class App {
                                     case 1:
                                         System.out.print("\nDigite o nome da ferramenta que deseja editar: ");
                                         auxString = input.nextLine();
-                                        
-                                        if(ToolsPicker.read(auxString, 0) != null){
+
+                                        if (ToolsPicker.read(auxString, 0) != null) {
                                             System.out.print("\nDigite o novo nome da ferramenta: ");
                                             auxString2 = input.nextLine();
 
+                                            // atualizando no arquivo:
+                                            ToolsPicker.update(auxString, 0, auxString2, 0);
+                                            // Atualizando na lista:
+                                            for (Tools tool : ToolsList) {
+                                                if (tool.getName().equals(auxString)) {
+                                                    tool.setName(auxString2);
+                                                    break;
+                                                }
+                                            }
+
                                             System.out.print("\nDigite a nova descrição da ferramenta: ");
-                                            auxString3 = input.nextLine();
-                                            
+                                            auxString2 = input.nextLine();
+
+                                            // atualizando no arquivo:
+                                            ToolsPicker.update(auxString, 0, auxString2, 1);
+                                            // Atualizando na lista:
+                                            for (Tools tool : ToolsList) {
+                                                if (tool.getName().equals(auxString)) {
+                                                    tool.setDescription(auxString2);
+                                                    break;
+                                                }
+                                            }
+
                                             System.out.print("\nCategorias disponíveis: ");
                                             for (int i = 0; i < CategoryList.size(); i++) {
-                                                System.out.println((i + 1) + " - " + CategoryList.get(i).getUsage() + "\n");
+                                                System.out.println(
+                                                        (i + 1) + " - " + CategoryList.get(i).getUsage() + "\n");
                                             }
 
                                             System.out.print("Digite o número da categoria da ferramenta: ");
@@ -283,13 +305,11 @@ public class App {
                                             }
 
                                             // Atualizando no arquivo:
-                                            ToolsPicker.update(auxString, 0, auxString2);
-
+                                            ToolsPicker.update(auxString, 0, CategoryList.get(auxInt - 1).getUsage(),
+                                                    2);
                                             // Atualizando na lista:
                                             for (Tools tool : ToolsList) {
                                                 if (tool.getName().equals(auxString)) {
-                                                    tool.setName(auxString2);
-                                                    tool.setDescription(auxString3);
                                                     tool.setCategory(CategoryList.get(auxInt - 1).getUsage());
                                                     break;
                                                 }
@@ -299,27 +319,60 @@ public class App {
                                         } else {
                                             System.out.println("\nFerramenta não encontrada!");
                                         }
-                                        
-                                    break;
-                                    
+
+                                        MenuBuilder.pause(input);
+                                        break;
+
                                     // Editar ferramenta específica:
                                     case 2:
-                                        System.out.print("\nDigite o nome da ferramenta específica que deseja editar: ");
+                                        System.out
+                                                .print("\nDigite o nome da ferramenta específica que deseja editar: ");
                                         auxString = input.nextLine();
-                                        
-                                        if(SpecificToolsPicker.read(auxString, 0) != null){
-                                            System.out.println("\nDigite o novo nome da ferramenta específica: ");
+
+                                        if (SpecificToolsPicker.read(auxString, 0) != null) {
+                                            System.out.print("\nDigite o novo nome da ferramenta específica: ");
                                             auxString2 = input.nextLine();
 
+                                            // atualizando no arquivo:
+                                            SpecificToolsPicker.update(auxString, 0, auxString2, 0);
+                                            // Atualizando na lista:
+                                            for (SpecificTools tool : SpecificToolsList) {
+                                                if (tool.getName().equals(auxString)) {
+                                                    tool.setName(auxString2);
+                                                    break;
+                                                }
+                                            }
+
                                             System.out.print("\nDigite a nova descrição da ferramenta específica: ");
-                                            auxString3 = input.nextLine();
+                                            auxString2 = input.nextLine();
+
+                                            // atualizando no arquivo:
+                                            SpecificToolsPicker.update(auxString, 0, auxString2, 1);
+                                            // Atualizando na lista:
+                                            for (SpecificTools tool : SpecificToolsList) {
+                                                if (tool.getName().equals(auxString)) {
+                                                    tool.setDescription(auxString2);
+                                                    break;
+                                                }
+                                            }
 
                                             System.out.print("\nDigite a nova norma da ferramenta específica: ");
-                                            auxString4 = input.nextLine();
+                                            auxString2 = input.nextLine();
 
-                                            System.out.println("\nCategorias disponíveis:\n");
+                                            // atualizando no arquivo:
+                                            SpecificToolsPicker.update(auxString, 0, auxString2, 2);
+                                            // Atualizando na lista:
+                                            for (SpecificTools tool : SpecificToolsList) {
+                                                if (tool.getName().equals(auxString)) {
+                                                    tool.setStandards(auxString2);
+                                                    break;
+                                                }
+                                            }
+
+                                            System.out.print("\nCategorias disponíveis: ");
                                             for (int i = 0; i < CategoryList.size(); i++) {
-                                                System.out.println((i + 1) + " - " + CategoryList.get(i).getUsage() + "\n");
+                                                System.out.println(
+                                                        (i + 1) + " - " + CategoryList.get(i).getUsage() + "\n");
                                             }
 
                                             System.out.print("Digite o número da categoria da ferramenta específica: ");
@@ -332,39 +385,37 @@ public class App {
                                             }
 
                                             // Atualizando no arquivo:
-                                            SpecificToolsPicker.update(auxString, 0, auxString2);
-
+                                            SpecificToolsPicker.update(auxString, 0,
+                                                    CategoryList.get(auxInt - 1).getUsage(), 3);
                                             // Atualizando na lista:
                                             for (SpecificTools tool : SpecificToolsList) {
                                                 if (tool.getName().equals(auxString)) {
-                                                    tool.setName(auxString2);
-                                                    tool.setDescription(auxString3);
-                                                    tool.setStandards(auxString4);
                                                     tool.setCategory(CategoryList.get(auxInt - 1).getUsage());
                                                     break;
                                                 }
                                             }
 
-                                            System.out.println("\nFerramenta específica editada com sucesso!");
+                                            System.out.println("\nFerramenta editada com sucesso!");
                                         } else {
-                                            System.out.println("\nFerramenta específica não encontrada!");
+                                            System.out.println("\nFerramenta não encontrada!");
                                         }
-                                    break;
+
+                                        MenuBuilder.pause(input);
+                                        break;
 
                                     // Voltar:
                                     case 3:
                                         System.out.println("\nVoltando...");
                                         MenuBuilder.pause(input);
-                                    break;
-                                
+                                        break;
+
                                     default:
                                         System.out.println("\nOpção inválida! Escolha entre 1 e 3.");
                                         MenuBuilder.pause(input);
-                                    break;
+                                        break;
                                 }
-                                
 
-                            // Voltar
+                                // Voltar
                             case 5:
                                 System.out.println("\nVoltando...");
                                 break;
@@ -481,7 +532,7 @@ public class App {
                                 auxString2 = input.nextLine();
 
                                 // editando o arquivo de categorias:
-                                if (CategoryPicker.update(auxString, 0, auxString2) == true) {
+                                if (CategoryPicker.update(auxString, 0, auxString2, 0) == true) {
                                     // Editando a lista de categorias:
                                     for (Category category : CategoryList) {
                                         if (category.getUsage().equals(auxString)) {
@@ -491,8 +542,8 @@ public class App {
                                     }
 
                                     // Editando o arquivo de ferramentas:
-                                    if (ToolsPicker.update(auxString, 2, auxString2) == true) {
-                                        // Editando a lista de ferramentas: 
+                                    if (ToolsPicker.update(auxString, 2, auxString2, 2) == true) {
+                                        // Editando a lista de ferramentas:
                                         for (Tools tool : ToolsList) {
                                             if (tool.getCategory().equals(auxString)) {
                                                 tool.setCategory(auxString2);
@@ -501,7 +552,7 @@ public class App {
                                     }
 
                                     // Editando o arquivo de ferramentas específicas:
-                                    if (SpecificToolsPicker.update(auxString, 3, auxString2) == true) {
+                                    if (SpecificToolsPicker.update(auxString, 3, auxString2, 3) == true) {
                                         // Editando a lista de ferramentas específicas:
                                         for (SpecificTools tool : SpecificToolsList) {
                                             if (tool.getCategory().equals(auxString)) {
@@ -519,12 +570,12 @@ public class App {
                             // Voltar
                             case 5:
                                 System.out.println("\nVoltando...");
-                            break;
+                                break;
 
                             default:
                                 System.out.println("\nOpção invalida! Escolha entre 1 e 5.");
                                 MenuBuilder.pause(input);
-                            break;
+                                break;
                         }
                     } while (rUser != 5);
 
