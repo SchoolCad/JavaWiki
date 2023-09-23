@@ -5,3 +5,5 @@ chave americana;ela fala em americano;norma mais top ainda que tudo;megaMind
 chave brasileira;ela fala em brasileiro;sem normas entao cuidado;megaMind
 sdf;dfg;sfdgsfdg;megaMind
 sadfg;sfdg;dfgdsfg;TopCategory
+nova tools;asas;specify;Nova cat
+sdf;sfdg;afdgdfg;TopCategory

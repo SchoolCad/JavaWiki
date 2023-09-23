@@ -5,3 +5,4 @@ furadeira;ela fura coisas;megaMind
 parafusadeira;ela parafusa coisas;megaMind
 serra;ela serra coisas;Geral
 martelo;ele martela coisas;TopCategory
+adsf;asdf;TopCategory

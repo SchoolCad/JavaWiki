@@ -225,9 +225,9 @@ public class App {
                                         auxString = ToolsPicker.readAll();
 
                                         // Formatando auxString:
-                                        lines = auxString.split(";");
+                                        lines = auxString.split("\n");
                                         for (String line : lines) {
-                                            String[] parts = line.split(",");
+                                            String[] parts = line.split(";");
                                             System.out.println("\nNome: " + parts[0] + "\nDescrição: " + parts[1]
                                                     + "\nCategoria: " + parts[2] + "\n");
                                         }
