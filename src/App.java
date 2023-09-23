@@ -6,9 +6,9 @@ public class App {
     public static void main(String[] args) throws Exception {
         /*---------------------------------------------- Carregando o programa (carregando dados na memória) ----------------------------------------------*/
         // Endereços dos arquivos:
-        String ToolsFileName = "Tools.txt";
-        String CategoryFileName = "Category.txt";
-        String SpecificToolsFileName = "SpecificTools.txt";
+        String ToolsFileName = "./backup/Tools.txt";
+        String CategoryFileName = "./backup/Category.txt";
+        String SpecificToolsFileName = "./backup/SpecificTools.txt";
 
         // listas:
         List<Category> CategoryList = new ArrayList<Category>();
@@ -237,9 +237,9 @@ public class App {
                                     if (!SpecificToolsList.isEmpty()) {
                                         auxString2 = SpecificToolsPicker.readAll();
 
-                                        lines = auxString2.split(";");
+                                        lines = auxString2.split("\n");
                                         for (String line : lines) {
-                                            String[] parts = line.split(",");
+                                            String[] parts = line.split(";");
                                             System.out.println("\nNome: " + parts[0] + "\nDescrição: " + parts[1]
                                                     + "\nNorma: " + parts[2] + "\nCategoria: " + parts[3] + "\n");
                                         }
